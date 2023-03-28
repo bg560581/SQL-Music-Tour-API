@@ -1,8 +1,9 @@
 'use strict';
-const { events } = require('pg');
-const {  Model } = require('sequelize');
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Event extends Model {
+  class Band extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,29 +13,38 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Event.init({
-    event_id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+ Band.init({
+    band_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
     },
-    event_name: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    venue:  {
-        type: DataTypes.STRING,
+    genre: {
+        type: DataTypes.TEXT,
         allowNull: false
     },
-    event_date: {
+    available_start_time: {
         type: DataTypes.DATE,
         allowNull: false
     },
+    end_time: {
+        type: DataTypes.DATE,
+        allowNull: false
+    }
   }, {
     sequelize,
-    modelName: 'Event',
-    tableName: 'events',
+    modelName: 'Band',
+    tableName: 'bands',
     timestamps: false
-  });
-  return Event;
+  })
+
 };
+
+// EXPORT
+module.exports = Band
+
+
